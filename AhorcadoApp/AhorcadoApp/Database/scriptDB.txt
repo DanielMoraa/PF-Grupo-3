@@ -1,0 +1,54 @@
+-- Crear tabla Palabra
+CREATE TABLE Palabra (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Texto NVARCHAR(50) NOT NULL UNIQUE,
+    TieneTilde BIT NOT NULL
+);
+
+-- Crear tabla Jugador
+CREATE TABLE Jugador (
+    Id INT PRIMARY KEY,
+    Nombre NVARCHAR(100) NOT NULL,
+    Marcador INT NOT NULL DEFAULT 0
+);
+
+-- Crear tabla Partida
+CREATE TABLE Partida (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    IdJugador INT NOT NULL,
+    Nivel NVARCHAR(10) NOT NULL CHECK (Nivel IN ('Fácil', 'Normal', 'Difícil')),
+    PalabraUsada NVARCHAR(50) NOT NULL,
+    Resultado NVARCHAR(10) NOT NULL CHECK (Resultado IN ('Ganada', 'Perdida')),
+    Fecha DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (IdJugador) REFERENCES Jugador(Id)
+);
+
+INSERT INTO Palabra (Texto, TieneTilde) VALUES
+('árbol', 1), ('amigo', 0), ('aventura', 0), ('ángulo', 1), ('avión', 1),
+('bailar', 0), ('búfalo', 1), ('bicicleta', 0), ('bóveda', 1),
+('corazón', 1), ('canguro', 0), ('cámara', 1), ('cólico', 1), ('cómodo', 1),('camino', 0),
+('diente', 0), ('delfín', 1), ('doctor', 0),
+('escuela', 0), ('energía', 1), ('estrella', 0),
+('fábrica', 1), ('fósforo', 1), ('familia', 0), ('fértil', 1),('fuerza', 0),
+('girasol', 0), ('galaxia', 0), ('gobierno', 0), ('glóbulo', 1),('gorila', 0),
+('huracán', 1), ('hormiga', 0), ('hígado', 1), ('héroe', 1),
+('invierno', 0), ('insecto', 0), ('ilusión', 1),
+('jardín', 1), ('juguete', 0), ('jabón', 1), ('júpiter', 1),
+('kiosco', 0), ('karma', 0), ('kilómetro', 1),
+('lápiz', 1), ('lágrima', 1), ('lengua', 0),
+('música', 1), ('montaña', 1), ('melón', 1), ('móvil', 1),
+('nariz', 0), ('naranja', 0), ('néctar', 1),('náusea', 1),
+('ñampí', 1), ('ñácara', 1), ('ñique', 0),
+('océano', 1), ('orquídea', 1), ('otoño', 1), ('oficio', 0),
+('pájaro', 1), ('palabra', 0), ('público', 1), ('pánico', 1),('puente', 0),
+('queso', 0), ('química', 1), ('quemar', 0),
+('rápido', 1), ('relámpago', 1), ('ritmo', 0), ('réplica', 1),('ratón', 1),
+('sábado', 1), ('sandía', 1), ('sorpresa', 0), ('sábana', 1),
+('teléfono', 1), ('tigre', 0), ('tímido', 1), ('táctil', 1),
+('último', 1), ('universo', 0), ('unión', 1),
+('vídeo', 1), ('ventana', 0), ('volcán', 1),
+('walter', 0), ('wikipedia', 0), ('waterpolo', 0),
+('xenofobia', 0), ('xilófono', 1), ('xilofagia', 0),
+('yegua', 0), ('yemas', 0), ('yunque', 0),
+('zapato', 0), ('zanahoria', 0), ('zorro', 0);
+
